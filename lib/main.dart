@@ -204,9 +204,20 @@ class _KosPageState extends State<KosPage>{
                 Image(
                   image: AssetImage(kos[0].image),
                 ),
+                Container(
+                  color: Colors.black,
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Row(
+                      children: <Widget>[
+                        Icon(Icons.location_on,color: Colors.white,size: 24,),
+                      ],
+                    ),
+                  )
+                ),
                 Text(kos[0].alamat),
                 Text('Rp 200.000 / Bulan Rp. 3.000.000 / tahun'),
-                Text(kos[0].deskripsi)
+                Text(kos[0].deskripsi),
               ],
             )
           ],
