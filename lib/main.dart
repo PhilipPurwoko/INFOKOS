@@ -1,12 +1,17 @@
 //import 'dart:collection';
 import 'dart:ui';
-
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 
 void main() => runApp(MaterialApp(
     home: Home()
 ));
+
+var kosThing;
+changeKos(thing){
+  kosThing = thing;
+}
 
 class Kosan{
   String pemilik;
@@ -16,13 +21,29 @@ class Kosan{
   String image;
   Kosan({this.nama,this.alamat,this.pemilik,this.deskripsi,this.image});
 }
+class KosanImageConstructor{
+  String image1;
+  String image2;
+  String image3;
+  String image4;
+  String image5;
+  KosanImageConstructor({this.image1,this.image2,this.image3,this.image4,this.image5});
+}
+
+List<KosanImageConstructor> KosanImage = [
+  KosanImageConstructor(image1:'assets/Model-1.jpg',image2: 'assets/Model-1.jpg',image3: 'assets/Model-1.jpg',image4: 'assets/Model-1.jpg',image5: 'assets/Model-1.jpg'),
+  KosanImageConstructor(image1:'assets/Model-2.jpg',image2: 'assets/Model-2.jpg',image3: 'assets/Model-2.jpg',image4: 'assets/Model-2.jpg',image5: 'assets/Model-2.jpg'),
+  KosanImageConstructor(image1:'assets/Model-3.jpg',image2: 'assets/Model-3.jpg',image3: 'assets/Model-3.jpg',image4: 'assets/Model-3.jpg',image5: 'assets/Model-3.jpg'),
+  KosanImageConstructor(image1:'assets/Model-2.jpg',image2: 'assets/Model-2.jpg',image3: 'assets/Model-2.jpg',image4: 'assets/Model-2.jpg',image5: 'assets/Model-2.jpg'),
+  KosanImageConstructor(image1:'assets/Model-1.jpg',image2: 'assets/Model-1.jpg',image3: 'assets/Model-1.jpg',image4: 'assets/Model-1.jpg',image5: 'assets/Model-1.jpg'),
+];
 
 List<Kosan> kos = [
-  Kosan(pemilik: 'Maryati', nama:'Nur Arif',alamat:'Makamhaji, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:'assets/Model-1.jpg'),
-  Kosan(pemilik: 'Budi', nama:'Widya Graha',alamat:'Pabelan, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:'assets/Model-2.jpg'),
-  Kosan(pemilik: 'Haryanto', nama:'Wanna Amarta',alamat:'RT09/RW03, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:'assets/Model-3.jpg'),
-  Kosan(pemilik: 'Haryati', nama:'Sinden Papat',alamat:'UMS, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:'assets/Model-1.jpg'),
-  Kosan(pemilik: 'Anton', nama:'Nur Setyo',alamat:'Kentingan, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:'assets/Model-2.jpg')
+  Kosan(pemilik: 'Maryati', nama:'Nur Arif',alamat:'Makamhaji, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[0].image1),
+  Kosan(pemilik: 'Budi', nama:'Widya Graha',alamat:'Pabelan, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[1].image1),
+  Kosan(pemilik: 'Haryanto', nama:'Wanna Amarta',alamat:'RT09/RW03, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[2].image1),
+  Kosan(pemilik: 'Haryati', nama:'Sinden Papat',alamat:'UMS, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[3].image1),
+  Kosan(pemilik: 'Anton', nama:'Nur Setyo',alamat:'Kentingan, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[4].image1)
 ];
 
 class Home extends StatefulWidget{
@@ -61,6 +82,7 @@ class _HomeState extends State<Home> {
                       children: <Widget>[
                         GestureDetector(
                           onTap: (){
+                            changeKos([kosan.nama,kosan.alamat,kosan.deskripsi,kosan.image,kosan.pemilik]);
                             Navigator.push(
                               context,
                               MaterialPageRoute(builder: (context) => KosPage())
@@ -154,7 +176,7 @@ class _HomeState extends State<Home> {
         items: [
           BottomNavigationBarItem(
             icon: new Icon(Icons.home),
-            title: Text('Home')
+            title: Text('Home'),
           ),
           BottomNavigationBarItem(
             icon: new Icon(Icons.search),
@@ -189,18 +211,35 @@ class KosPage extends StatefulWidget {
 }
 
 class _KosPageState extends State<KosPage>{
-  var kosList = kos[0];
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(),
+      appBar: AppBar(
+        title: Text(kosThing[0]),
+      ),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Column(
               children: <Widget>[
-                Image(
-                  image: AssetImage(kosList.image),
+                CarouselSlider(
+//                  height: 400.0,
+                  items: [0,1,2,3,4].map((i) {
+                    return Builder(
+                      builder: (BuildContext context) {
+                        return Container(
+                            width: MediaQuery.of(context).size.width,
+                            margin: EdgeInsets.symmetric(horizontal: 5.0),
+                            decoration: BoxDecoration(
+                                color: Colors.white
+                            ),
+                            child: Image(
+                              image: AssetImage(KosanImage[i].image1),
+                            ),
+                        );
+                      },
+                    );
+                  }).toList(),
                 ),
                 Container(
                   color: Colors.black,
@@ -215,28 +254,11 @@ class _KosPageState extends State<KosPage>{
                     ),
                   )
                 ),
-                Align(
-                  child: Column(
-                    children: <Widget>[
-                      Text(
-                        'Kos ' + kosList.nama,
-                        style: TextStyle(
-                          color: Colors.blueAccent,
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-                Card(
-                  child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      child: Text(kosList.alamat),
-                    ),
+                Text(
+                  kosThing[1],
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontSize: 18
                   ),
                 ),
                 Card(
@@ -255,7 +277,7 @@ class _KosPageState extends State<KosPage>{
                     onTap: () {},
                     child: Container(
                       padding: EdgeInsets.all(8),
-                      child: Text(kosList.deskripsi),
+                      child: Text(kosThing[2]),
                     ),
                   ),
                 ),
