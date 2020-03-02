@@ -188,21 +188,19 @@ class KosPage extends StatefulWidget {
   _KosPageState createState() => _KosPageState();
 }
 
-
 class _KosPageState extends State<KosPage>{
+  var kosList = kos[0];
   @override
   Widget build(BuildContext context){
     return Scaffold(
-      appBar: AppBar(
-        title: Text(kos[0].nama),
-      ),
+      appBar: AppBar(),
       body: SingleChildScrollView(
         child: Column(
           children: <Widget>[
             Column(
               children: <Widget>[
                 Image(
-                  image: AssetImage(kos[0].image),
+                  image: AssetImage(kosList.image),
                 ),
                 Container(
                   color: Colors.black,
@@ -211,13 +209,56 @@ class _KosPageState extends State<KosPage>{
                     child: Row(
                       children: <Widget>[
                         Icon(Icons.location_on,color: Colors.white,size: 24,),
+                        Icon(Icons.photo,color: Colors.white,size: 24,),
+                        Icon(Icons.videocam,color: Colors.white,size: 24,),
                       ],
                     ),
                   )
                 ),
-                Text(kos[0].alamat),
-                Text('Rp 200.000 / Bulan Rp. 3.000.000 / tahun'),
-                Text(kos[0].deskripsi),
+                Align(
+                  child: Column(
+                    children: <Widget>[
+                      Text(
+                        'Kos ' + kosList.nama,
+                        style: TextStyle(
+                          color: Colors.blueAccent,
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Card(
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {},
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      child: Text(kosList.alamat),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {},
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      child: Text('Rp 200.000 / Bulan Rp. 3.000.000 / tahun'),
+                    ),
+                  ),
+                ),
+                Card(
+                  child: InkWell(
+                    splashColor: Colors.blue.withAlpha(30),
+                    onTap: () {},
+                    child: Container(
+                      padding: EdgeInsets.all(8),
+                      child: Text(kosList.deskripsi),
+                    ),
+                  ),
+                ),
               ],
             )
           ],
@@ -226,28 +267,3 @@ class _KosPageState extends State<KosPage>{
     );
   }
 }
-
-//class _KosPageState extends State<KosPage> {
-//  @override
-//  Widget build(BuildContext context) {
-//    return Scaffold(
-//      appBar: AppBar(
-//        title: Text('hi')
-//      ),
-//      body: Column(
-//        children: <Widget>[
-//          Row(
-//            children: <Widget>[
-//              Text('aw')
-//            ],
-//          ),
-//          Row(
-//            children: <Widget>[
-//              Text('its me')
-//            ],
-//          )
-//        ],
-//      )
-//    );
-//  }
-//}
