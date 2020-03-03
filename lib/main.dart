@@ -1,6 +1,7 @@
 //import 'dart:collection';
 import 'dart:ui';
 import 'package:carousel_slider/carousel_slider.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 //import 'package:flutter/services.dart';
 
@@ -39,11 +40,11 @@ List<KosanImageConstructor> KosanImage = [
 ];
 
 List<Kosan> kos = [
-  Kosan(pemilik: 'Maryati', nama:'Nur Arif',alamat:'Makamhaji, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[0].image1),
-  Kosan(pemilik: 'Budi', nama:'Widya Graha',alamat:'Pabelan, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[1].image1),
-  Kosan(pemilik: 'Haryanto', nama:'Wanna Amarta',alamat:'RT09/RW03, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[2].image1),
-  Kosan(pemilik: 'Haryati', nama:'Sinden Papat',alamat:'UMS, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[3].image1),
-  Kosan(pemilik: 'Anton', nama:'Nur Setyo',alamat:'Kentingan, gang masjid jammal',deskripsi:'Kos Putra tersedia 2 kamar kosong 3x4 meter',image:KosanImage[4].image1)
+  Kosan(pemilik: 'Maryati', nama:'Nur Arif',alamat:'Makamhaji, gang masjid jammal',deskripsi:'Putra : 2 kamar kosong',image:KosanImage[0].image1),
+  Kosan(pemilik: 'Budi', nama:'Widya Graha',alamat:'Pabelan, gang masjid jammal',deskripsi:'Putra : 2 kamar kosong',image:KosanImage[1].image1),
+  Kosan(pemilik: 'Haryanto', nama:'Wanna Amarta',alamat:'RT09/RW03, gang masjid jammal',deskripsi:'Putra : 2 kamar kosong',image:KosanImage[2].image1),
+  Kosan(pemilik: 'Haryati', nama:'Sinden Papat',alamat:'UMS, gang masjid jammal',deskripsi:'Putra : 2 kamar kosong',image:KosanImage[3].image1),
+  Kosan(pemilik: 'Anton', nama:'Nur Setyo',alamat:'Kentingan, gang masjid jammal',deskripsi:'Putra : 2 kamar kosong',image:KosanImage[4].image1)
 ];
 
 class Home extends StatefulWidget{
@@ -247,40 +248,201 @@ class _KosPageState extends State<KosPage>{
                     padding: const EdgeInsets.all(12.0),
                     child: Row(
                       children: <Widget>[
-                        Icon(Icons.location_on,color: Colors.white,size: 24,),
-                        Icon(Icons.photo,color: Colors.white,size: 24,),
-                        Icon(Icons.videocam,color: Colors.white,size: 24,),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.location_on,color: Colors.white,size: 28,),
+                              Text(
+                                'Maps',
+                                style: TextStyle(
+                                  color: Colors.white
+                                ),
+                              )
+                            ],
+                          )
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.photo,color: Colors.white,size: 28,),
+                              Text(
+                                'More Images',
+                                style: TextStyle(
+                                    color: Colors.white
+                                ),
+                              )
+                            ],
+                          )
+                        ),
+                        Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Row(
+                            children: <Widget>[
+                              Icon(Icons.videocam,color: Colors.white,size: 28,),
+                              Text(
+                                'Video',
+                                style: TextStyle(
+                                    color: Colors.white
+                                ),
+                              )
+                            ],
+                          )
+                        ),
                       ],
                     ),
                   )
                 ),
-                Text(
-                  kosThing[1],
-                  style: TextStyle(
-                    color: Colors.orange,
-                    fontSize: 18
+                Padding(
+                  padding: EdgeInsets.all(10),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.stretch,
+                    children: <Widget>[
+                      Row(
+                        children: <Widget>[
+                          Column(
+                            children: <Widget>[
+                              Text(
+                                kosThing[2],
+                                style: TextStyle(
+                                    fontSize: 18,
+                                    color : Colors.redAccent
+                                ),
+                              ),
+                              Text(
+                                kosThing[1],
+                                style: TextStyle(
+                                    color: Colors.blueGrey,
+                                    fontSize: 14
+                                ),
+                              ),
+                            ],
+                          ),
+                          Divider(
+                            indent: 10,
+                          ),
+                          Expanded(
+                              child: FlatButton(
+                                color: Colors.blueAccent,
+                                child: Text(
+                                  'Buka Peta ',
+                                  style: TextStyle(
+                                      color: Colors.white
+                                  ),
+                                ),
+                                onPressed: (){},
+                              )
+                          )
+                        ],
+                      ),
+                    ],
                   ),
                 ),
-                Card(
-                  child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      child: Text('Rp 200.000 / Bulan Rp. 3.000.000 / tahun'),
+                Divider(color: Colors.blueGrey,),
+                Container(
+                  color: Colors.blue[50],
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: <Widget>[
+                        Text('Fasilitas'),
+                        Row(
+                          children: <Widget>[
+                            Row(
+                              children: <Widget>[
+                                Icon(Icons.grid_on),
+                                Text('3mx3m')
+                              ],
+                            ),
+                            Divider(
+                              indent: 20,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Icon(Icons.wifi),
+                                Text('Wifi')
+                              ],
+                            ),
+                            Divider(
+                              indent: 20,
+                            ),
+                            Row(
+                              children: <Widget>[
+                                Icon(Icons.tv),
+                                Text('Television')
+                              ],
+                            )
+                          ],
+                        ),
+                      ],
+                    )
+                  ),
+                ),
+                Divider(color: Colors.blueGrey,),
+                Container(
+                  color: Colors.blue[50],
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: <Widget>[
+                        Row(
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Text('Peraturan Kos :'),
+                                Text('1. Dilarang bawa cewek ke kos'),
+                                Text('2. Dilarang bawa cewek ke kos'),
+                                Text('3. Dilarang bawa cewek ke kos')
+                              ],
+                            ),
+                          ],
+                        ),
+                      ],
                     ),
-                  ),
+                  )
                 ),
-                Card(
-                  child: InkWell(
-                    splashColor: Colors.blue.withAlpha(30),
-                    onTap: () {},
-                    child: Container(
-                      padding: EdgeInsets.all(8),
-                      child: Text(kosThing[2]),
-                    ),
-                  ),
+                Divider(color: Colors.blueGrey,),
+                Image(
+                  image: AssetImage('assets/Screenshot (88).png'),
                 ),
+                Divider(color: Colors.blueGrey,),
+                Container(
+                  color: Colors.blue[50],
+                  child: Padding(
+                    padding: EdgeInsets.all(10),
+                    child: Column(
+                      children: <Widget>[
+                        Text('Harga'),
+                        Row(
+                          children: <Widget>[
+                            Column(
+                              children: <Widget>[
+                                Text('Rp 3.000.000/Bulan'),
+                                Text('Rp 30.000.000/Tahun')
+                              ],
+                            ),
+                            Divider(
+                              indent: 10,
+                            ),
+                            Expanded(
+                                child: FlatButton(
+                                  color: Colors.blueAccent,
+                                  child: Text(
+                                    'PESAN',
+                                    style: TextStyle(
+                                        color: Colors.white
+                                    ),
+                                  ),
+                                  onPressed: (){},
+                                )
+                            )
+                          ],
+                        )
+                      ],
+                    )
+                  ),
+                )
               ],
             )
           ],
