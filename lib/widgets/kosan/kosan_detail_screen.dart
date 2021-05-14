@@ -2,10 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:infokos/models/kosan.dart';
 
 class KosanDetailScreen extends StatelessWidget {
-  final Kosan kosan;
-  KosanDetailScreen(this.kosan);
+  static const routeName = '/kosan-detail';
+
   @override
   Widget build(BuildContext context) {
+    final kosan = ModalRoute.of(context)!.settings.arguments as Kosan;
     return Scaffold(
       appBar: AppBar(
         title: Text('Kosan Detail'),

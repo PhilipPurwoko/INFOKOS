@@ -7,51 +7,39 @@ class KosanCard extends StatelessWidget {
 
   KosanCard(this.kosan);
 
-  void selectKosan(BuildContext ctx, Kosan kosan) {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return KosanDetailScreen(kosan);
-    }));
+  void selectKosan(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(KosanDetailScreen.routeName, arguments: kosan);
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        selectKosan(context, kosan);
+        selectKosan(context);
       },
       child: Container(
         width: double.infinity,
         padding: EdgeInsets.all(10),
         margin: EdgeInsets.all(5),
-        child: Row(
+        child: Column(
           children: [
-            Container(
-              child: Text('image'),
-              color: Colors.lightBlue,
+            Text(
+              kosan.name,
+              style: TextStyle(fontWeight: FontWeight.bold),
             ),
-            Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                Text(
-                  kosan.name,
-                  style: TextStyle(fontWeight: FontWeight.bold),
-                ),
-                Text(
-                  'Rp ${kosan.price.toString()}',
-                  style: TextStyle(
-                      fontWeight: FontWeight.bold, color: Colors.grey),
-                ),
-                Text(
-                  kosan.address,
-                  style: TextStyle(fontWeight: FontWeight.w300),
-                ),
-              ],
+            Text(
+              'Rp ${kosan.price.toString()}',
+              style: TextStyle(fontWeight: FontWeight.bold, color: Colors.grey),
+            ),
+            Text(
+              kosan.address,
+              style: TextStyle(fontWeight: FontWeight.w300),
             ),
           ],
         ),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.all(Radius.circular(10)),
-          border: Border.all(color: Colors.black, width: 3),
+          border: Border.all(color: Colors.blue, width: 2),
         ),
       ),
     );

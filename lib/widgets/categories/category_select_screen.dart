@@ -1,15 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:infokos/models/category.dart';
 import 'package:infokos/widgets/categories/category_card.dart';
 
 class CategorySelectScreen extends StatelessWidget {
-  final List<String> categories = [
-    'Luxury',
-    'Standard',
-    'Low Budget',
-    'City',
-    'Countryside',
-    'University Area'
-  ];
+  static const routeName = '/category-select';
 
   @override
   Widget build(BuildContext context) {

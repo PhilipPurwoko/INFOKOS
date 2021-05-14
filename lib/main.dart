@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:infokos/routes.dart';
 import 'package:infokos/widgets/categories/category_select_screen.dart';
 
 void main() {
@@ -13,7 +14,8 @@ class MyApp extends StatelessWidget {
       theme: ThemeData(
         primarySwatch: Colors.blue,
       ),
-      home: CategorySelectScreen(),
+      initialRoute: CategorySelectScreen.routeName,
+      routes: routes,
     );
   }
 }

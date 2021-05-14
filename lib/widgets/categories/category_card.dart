@@ -1,28 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:infokos/widgets/categories/category_item_screen.dart';
+import 'package:infokos/widgets/categories/category_kosan_screen.dart';
 
 class CategoryCard extends StatelessWidget {
   final String category;
 
   CategoryCard(this.category);
 
-  void selectCategory(BuildContext ctx, String categoryName) {
-    Navigator.of(ctx).push(MaterialPageRoute(builder: (_) {
-      return CategoryItemScreen(categoryName);
-    }));
+  void selectCategory(BuildContext ctx) {
+    Navigator.of(ctx).pushNamed(
+      CategoryKosanScreen.routeName,
+      arguments: <String, String>{'category': category},
+    );
   }
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
       onTap: () {
-        selectCategory(context, category);
+        selectCategory(context);
       },
       child: Container(
         padding: EdgeInsets.all(10),
         margin: EdgeInsets.all(5),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text(
               category,
@@ -34,7 +34,7 @@ class CategoryCard extends StatelessWidget {
           borderRadius: BorderRadius.all(Radius.circular(10)),
           gradient: LinearGradient(
             colors: [
-              Colors.green,
+              Theme.of(context).accentColor.withOpacity(0.5),
               Theme.of(context).accentColor,
             ],
             begin: Alignment.topLeft,
